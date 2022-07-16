@@ -7,14 +7,14 @@ import androidx.lifecycle.ViewModel
 import com.example.pokemon.pojo.Pokemon
 import com.example.pokemon.pojo.PokemonApiResponse
 import com.example.pokemon.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-
+@HiltViewModel
 class PokemonViewModel @Inject constructor(val repository: Repository): ViewModel() {
     val pokemon_list: MutableLiveData<ArrayList<Pokemon>> = MutableLiveData(arrayListOf())
-        get() = field
 
     @SuppressLint("CheckResult")
     fun get_pokemons() {

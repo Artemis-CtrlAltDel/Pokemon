@@ -6,5 +6,5 @@ import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 class Repository @Inject constructor(val pokemonApiService: PokemonApiService) {
-    fun get_pokemons(): Observable<PokemonApiResponse> = pokemonApiService.get_pokemons()
+    fun get_pokemons() = pokemonApiService.get_pokemons()
 }
