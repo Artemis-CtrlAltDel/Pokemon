@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Pokemon/app/src/main/res/drawable/ic_star_active.xml" value="0.2" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Pokemon/app/src/main/res/drawable/star_inactive.xml" value="0.2" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/Pokemon/app/src/main/res/layout/activity_favorite.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/Pokemon/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/Pokemon/app/src/main/res/layout/pokemon_item.xml" value="0.253125" />
       </map>
