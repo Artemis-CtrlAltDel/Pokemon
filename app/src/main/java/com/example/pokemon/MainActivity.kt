@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
             {
                 adapter.set_items(it)
             }
+
             recycler.adapter = adapter
             recycler.setHasFixedSize(true)
             recycler.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
