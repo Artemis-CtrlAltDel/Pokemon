@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.pokemon.R
 import com.example.pokemon.pojo.Pokemon
 
-class PokemonCardAdapter(val items: ArrayList<Pokemon>): RecyclerView.Adapter<PokemonCardAdapter.PokemonViewHolder>() {
+class PokemonCardAdapter(var items: ArrayList<Pokemon>): RecyclerView.Adapter<PokemonCardAdapter.PokemonViewHolder>() {
 
     class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val pokemon_name: TextView = itemView.findViewById(R.id.pokemon_name)
@@ -27,4 +27,9 @@ class PokemonCardAdapter(val items: ArrayList<Pokemon>): RecyclerView.Adapter<Po
     }
 
     override fun getItemCount() = items.size
+
+    fun set_items(list: ArrayList<Pokemon>) {
+        items = list
+        notifyDataSetChanged()
+    }
 }

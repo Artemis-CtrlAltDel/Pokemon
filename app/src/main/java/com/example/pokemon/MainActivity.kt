@@ -22,15 +22,14 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             setContentView(root)
 
-            recycler.setHasFixedSize(true)
-            recycler.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-
             view_model.get_pokemons()
             view_model.pokemon_list.observe(this@MainActivity)
             {
-                adapter = PokemonCardAdapter(it)
-                recycler.adapter = adapter
+                adapter.set_items(it)
             }
+            recycler.adapter = adapter
+            recycler.setHasFixedSize(true)
+            recycler.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
         }
     }
 }
