@@ -25,7 +25,7 @@ class PokemonViewModel @Inject constructor(val repository: Repository): ViewMode
                 for (pokemon: Pokemon in list) {
                     val url = pokemon.url
                     val pokemon_index = url.split("/").toTypedArray()
-                    pokemon.url = "https://pokeres.bastionbot.org/images/pokemon/" + pokemon_index[pokemon_index.size - 1] + ".png"
+                    pokemon.url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/" + pokemon_index[pokemon_index.size - 1] + ".png"
                 }
                 list
             }
