@@ -3,13 +3,14 @@ package com.example.pokemon.db
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.pokemon.pojo.Pokemon
 
 @Dao
 interface PokemonDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert_pokemon(pokemon: Pokemon)
 
     @Query("DELETE FROM pokemon_table WHERE name = :pokemon_name")

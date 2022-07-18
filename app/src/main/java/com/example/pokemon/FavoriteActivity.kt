@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokemon.adapters.OnItemClick
 import com.example.pokemon.adapters.PokemonCardAdapter
 import com.example.pokemon.databinding.ActivityFavoriteBinding
+import com.example.pokemon.pojo.Pokemon
 import com.example.pokemon.viewmodel.PokemonViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +26,8 @@ class FavoriteActivity : AppCompatActivity() {
         binding.apply {
             setContentView(root)
 
+            title = "Favorites"
+
             val view_model = ViewModelProvider(this@FavoriteActivity)[PokemonViewModel::class.java]
             adapter = PokemonCardAdapter(
                 arrayListOf(),
@@ -37,7 +41,7 @@ class FavoriteActivity : AppCompatActivity() {
             view_model.get_all()
             view_model.pokemon_fav_list?.observe(this@FavoriteActivity)
             {
-                Log.e("DB RESPONSE : ", "$it")
+                errorMessageContainer.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
                 adapter.set_items(ArrayList(it))
             }
 

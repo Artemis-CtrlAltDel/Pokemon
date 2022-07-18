@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.children
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             setContentView(root)
 
+            title = "Home"
+
             val view_model = ViewModelProvider(this@MainActivity)[PokemonViewModel::class.java]
             adapter = PokemonCardAdapter(
                 arrayListOf(),
@@ -39,7 +42,8 @@ class MainActivity : AppCompatActivity() {
             view_model.get_pokemons()
             view_model.pokemon_list.observe(this@MainActivity)
             {
-//                Log.e("API RESPONSE : ", "$it")
+//                Log.e("med api response : ", "$it")
+                errorMessageContainer.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
                 adapter.set_items(it)
             }
 
