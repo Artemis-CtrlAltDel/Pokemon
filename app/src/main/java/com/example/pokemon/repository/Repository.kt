@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import com.example.pokemon.db.PokemonDao
 import com.example.pokemon.network.PokemonApiService
 import com.example.pokemon.pojo.Pokemon
-import com.example.pokemon.pojo.PokemonApiResponse
-import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 class Repository @Inject constructor(val pokemon_api_service: PokemonApiService, val pokemon_dao: PokemonDao) {

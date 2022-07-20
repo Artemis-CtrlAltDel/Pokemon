@@ -5,12 +5,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pokemon.db.PokemonDao
 import com.example.pokemon.pojo.Pokemon
 import com.example.pokemon.pojo.PokemonApiResponse
 import com.example.pokemon.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -19,9 +19,13 @@ class PokemonViewModel @Inject constructor(val repository: Repository): ViewMode
     val pokemon_list: MutableLiveData<ArrayList<Pokemon>> = MutableLiveData(arrayListOf())
     var pokemon_fav_list: LiveData<List<Pokemon>>? = null
 
+    val composit_disposable = CompositeDisposable()
+
     @SuppressLint("CheckResult")
     fun get_pokemons() {
-        repository.get_pokemons()
+
+        val observable =
+            repository.get_pokemons()
             .subscribeOn(Schedulers.io())
             .map { pokemon_api_response: PokemonApiResponse ->
                 val list: ArrayList<Pokemon> = pokemon_api_response.results
@@ -35,11 +39,19 @@ class PokemonViewModel @Inject constructor(val repository: Repository): ViewMode
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ result -> pokemon_list.value = result }
             ) { error -> Log.e("bonk viewmodel", error.message.toString()) }
+
+        composit_disposable.add(observable)
     }
 
     fun insert_pokemon(pokemon: Pokemon) = repository.insert_pokemon(pokemon)
     fun delete_pokemon(pokemon_name: String) = repository.delete_pokemon(pokemon_name)
     fun get_all() {
         pokemon_fav_list = repository.get_all()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        composit_disposable.clear()
+        // use composite_disposable.dispose() as a hard clear
     }
 }

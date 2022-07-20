@@ -1,25 +1,19 @@
 package com.example.pokemon.adapters
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pokemon.R
 import com.example.pokemon.pojo.Pokemon
-import com.example.pokemon.viewmodel.PokemonViewModel
 
 class PokemonCardAdapter(var items: ArrayList<Pokemon>, val on_item_click: OnItemClick): RecyclerView.Adapter<PokemonCardAdapter.PokemonViewHolder>() {
 
     class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val pokemon_container: CardView = itemView.findViewById(R.id.container)
         val pokemon_name: TextView = itemView.findViewById(R.id.pokemon_name)
         val pokemon_image: ImageView = itemView.findViewById(R.id.pokemon_image)
         val pokemon_favorite: ImageView = itemView.findViewById(R.id.add_favorite)
